@@ -3,7 +3,7 @@ describe("Board", function() {
   beforeEach(function() {
     board = new Board();
   });
-  describe("Initiate a new grid for board", function() {
+  describe("constructor function", function() {
     it("should have a board of 3X3", function() {
       expect(board.grid.length).toEqual(3);
       board.grid.forEach(row => {
@@ -13,5 +13,13 @@ describe("Board", function() {
     });
   });
 
-  describe()
+  describe('Empty method', function(){
+    it('All spots are blank to begin with', function(){
+      let allPos = _.flatten(board.grid,true);
+      allPos.forEach((pos)=>{
+        expect(board.isEmpty(pos)).toBe(true);
+      })
+    })
+  })
+
 });
