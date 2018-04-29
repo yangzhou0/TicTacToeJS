@@ -1,17 +1,10 @@
 class Board {
-  constructor (){
+  constructor() {
     this.grid = Board.makeGrid();
   }
 
-  won(){
-    
-  }
-  static makeGrid(){
-    return [
-      [[],[],[]],
-      [[],[],[]],
-      [[],[],[]]
-    ]
-  }
 
+  static makeGrid() {
+    return [[[], [], []], [[], [], []], [[], [], []]];
+  }
 }
