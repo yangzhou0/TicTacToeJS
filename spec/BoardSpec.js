@@ -13,13 +13,12 @@ describe("Board", function() {
     });
   });
 
-  describe('Empty method', function(){
-    it('All spots are blank to begin with', function(){
-      let allPos = _.flatten(board.grid,true);
-      allPos.forEach((pos)=>{
+  describe("Empty method", function() {
+    it("All spots are blank to begin with", function() {
+      let allPos = _.flatten(board.grid, true);
+      allPos.forEach(pos => {
         expect(board.isEmpty(pos)).toBe(true);
-      })
-    })
-  })
-
+      });
+    });
+  });
 });

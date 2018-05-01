@@ -1,6 +1,7 @@
 class Board {
   constructor() {
     this.grid = Board.makeGrid();
+    this.turn = 'b';
   }
 
   isEmpty(pos){
@@ -26,6 +27,25 @@ class Board {
     console.log(this.grid[1]);
     console.log(this.grid[2]);
   }
+
+  won(){
+
+  }
+
+  const DIREC = {
+    horizontal:
+    [[[0,0],[0,1],[0,2]],
+    [[1,0],[1,1],[1,2]],
+    [[2,0],[2,1],[2,2]]],
+    vertical:
+    [[[0,0],[1,0],[2,0]],
+    [[0,1],[1,1],[2,1]],
+    [[2,0],[2,1],[2,2]]],
+    diagonal:
+    [[[0,0],[1,1],[2,2]],
+    [[2,0],[1,1],[0,2]]]
+
+  };
 
   static makeGrid() {
     return [[[], [], []], [[], [], []], [[], [], []]];
