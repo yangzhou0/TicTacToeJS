@@ -9,16 +9,22 @@ class Board {
   }
 
   insert(pos,color){
-    if (isEmpty) {
+    if (isEmpty(pos)) {
       console.log('pos is taken');
     }
     else{
-      this.getPos = color;
+      this.getPos(pos) = color;
     }
   }
 
   getPos(pos){
     return this.grid[[pos[0],pos[1]]];
+  }
+
+  print(){
+    console.log(this.grid[0]);
+    console.log(this.grid[1]);
+    console.log(this.grid[2]);
   }
 
   static makeGrid() {
