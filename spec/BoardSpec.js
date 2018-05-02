@@ -27,5 +27,25 @@ describe("Board", function() {
       let horizontalDirs = Board.DIREC.horizontal;
       expect(horizontalDirs.length).toEqual(3);
     });
+    it("Should flatten all possible ways to win when concat", function() {
+      let horizontals = Board.DIREC.horizontal;
+      let verticals = Board.DIREC.vertical;
+      let diagonals = Board.DIREC.diagonal;
+      let allPossiblePaths = Array.prototype.concat(
+        horizontals,
+        verticals,
+        diagonals
+      );
+      expect(allPossiblePaths).toEqual([
+        [[0, 0], [0, 1], [0, 2]],
+        [[1, 0], [1, 1], [1, 2]],
+        [[2, 0], [2, 1], [2, 2]],
+        [[0, 0], [1, 0], [2, 0]],
+        [[0, 1], [1, 1], [2, 1]],
+        [[2, 0], [2, 1], [2, 2]],
+        [[0, 0], [1, 1], [2, 2]],
+        [[2, 0], [1, 1], [0, 2]]
+      ]);
+    });
   });
 });
