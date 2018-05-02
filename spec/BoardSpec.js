@@ -21,4 +21,11 @@ describe("Board", function() {
       });
     });
   });
+
+  describe("Make sure of constant", function() {
+    it("Should grab horizontal key", function() {
+      let horizontalDirs = Board.DIREC.horizontal;
+      expect(horizontalDirs.length).toEqual(3);
+    });
+  });
 });
