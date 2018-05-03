@@ -12,15 +12,15 @@ class Board {
   }
 
   placeMark(pos, currentPlayer) {
-    if (this.isEmpty(pos)) {
+    if (!this.isEmpty(pos)) {
       console.log("pos is taken");
     } else {
-      this.getPos(pos) = currentPlayer.mark;
+      this.grid[pos[0]][pos[1]] = currentPlayer.mark;
     }
   }
 
   getPos(pos) {
-    return this.grid[[pos[0], pos[1]]];
+    return this.grid[pos[0]][pos[1]];
   }
 
   print() {
@@ -63,7 +63,7 @@ class Board {
   }
 
   static makeGrid() {
-    return [[[], [], []], [[], [], []], [[], [], []]];
+    return [new Array(3), new Array(3), new Array(3)];
   }
 }
 
