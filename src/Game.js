@@ -1,9 +1,9 @@
-const Board = require("./board")
-const Player = require('./player')
+const Board = require("./board");
+const Player = require("./player");
 
 class Game {
   constructor() {
-    this.board = new board();
+    this.board = new Board();
     this.black;
     this.white;
     this.currentPlayer;
@@ -14,12 +14,13 @@ class Game {
       this.currentPlayer === this.white ? this.black : this.white;
   }
 
-  buildPlayers(reader) {
+  buildPlayers(reader, callback) {
     let game = this;
     reader.question("Enter name of black mark: ", function(name) {
       game.black = new Player(name, "b");
       reader.question("Enter name of white mark: ", function(name) {
         game.white = new Player(name, "w");
+        callback();
       });
     });
   }
@@ -28,8 +29,8 @@ class Game {
     let board = this.board;
     let currentPlayer = this.currentPlayer;
     board.print();
-    reader.question(`whats your move ${currentPlayer.mark}?`, function(pos) {
-      callback(pos, currentPlayer);
+    reader.question(`whats your move ${currentPlayer.name}?`, function(pos) {
+      callback(JSON.parse(pos), currentPlayer);
     });
   }
 
@@ -38,14 +39,15 @@ class Game {
     let currentPlayer = this.currentPlayer;
     let game = this;
     if (!this.black || !this.white) {
-      this.buildPlayers(reader);
-      currentPlayer = this.black;
-      this.play(reader, completionCallback);
+      this.buildPlayers(reader, function() {
+        game.currentPlayer = game.black;
+        game.play(reader, completionCallback);
+      });
     } else {
       this.promptMove(reader, function(pos) {
         board.placeMark(pos, currentPlayer);
         if (board.isWon(currentPlayer)) {
-          console.log(`${currentPlayer.mark} won`);
+          console.log(`${currentPlayer.name} won`);
           completionCallback();
         } else {
           game.switchPlayer();
@@ -55,3 +57,5 @@ class Game {
     }
   }
 }
+
+module.exports = Game;
