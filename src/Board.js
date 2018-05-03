@@ -1,7 +1,6 @@
 class Board {
   constructor() {
     this.grid = Board.makeGrid();
-    this.turn = "b";
   }
 
   isEmpty(pos) {
@@ -24,9 +23,9 @@ class Board {
   }
 
   print() {
-    console.log(this.grid[0]);
-    console.log(this.grid[1]);
-    console.log(this.grid[2]);
+    console.log(`${this.grid[0][0]} | ${this.grid[0][1]} | ${this.grid[0][2]}`);
+    console.log(`${this.grid[1][0]} | ${this.grid[1][1]} | ${this.grid[1][2]}`);
+    console.log(`${this.grid[2][0]} | ${this.grid[2][1]} | ${this.grid[2][2]}`);
   }
 
   isWon(currentPlayer) {
@@ -67,4 +66,4 @@ class Board {
   }
 }
 
-// module.exports = Board;
+module.exports = Board;
