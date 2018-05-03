@@ -10,11 +10,12 @@ class Board {
     return true;
   }
 
-  placeMark(pos, currentPlayer) {
+  placeMark(pos, currentPlayer,callback) {
     if (!this.isEmpty(pos)) {
       console.log("pos is taken");
     } else {
       this.grid[pos[0]][pos[1]] = currentPlayer.mark;
+      callback();
     }
   }
 

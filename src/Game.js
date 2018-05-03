@@ -30,7 +30,7 @@ class Game {
     let currentPlayer = this.currentPlayer;
     board.print();
     reader.question(`whats your move ${currentPlayer.name}?`, function(pos) {
-      callback(JSON.parse(pos), currentPlayer);
+      callback(JSON.parse(pos));
     });
   }
 
@@ -45,14 +45,15 @@ class Game {
       });
     } else {
       this.promptMove(reader, function(pos) {
-        board.placeMark(pos, currentPlayer);
-        if (board.isWon(currentPlayer)) {
-          console.log(`${currentPlayer.name} won`);
-          completionCallback();
-        } else {
-          game.switchPlayer();
-          game.play(reader, completionCallback);
-        }
+        board.placeMark(pos, currentPlayer, function() {
+          if (board.isWon(currentPlayer)) {
+            console.log(`${currentPlayer.name} won`);
+            completionCallback();
+          } else {
+            game.switchPlayer();
+          }
+        });
+        game.play(reader, completionCallback);
       });
     }
   }
