@@ -53,7 +53,9 @@ class Game {
             game.switchPlayer();
           }
         });
-        game.play(reader, completionCallback);
+        if (!board.isWon(currentPlayer)) {
+          game.play(reader, completionCallback);
+        }
       });
     }
   }
