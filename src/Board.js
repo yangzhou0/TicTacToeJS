@@ -10,7 +10,7 @@ class Board {
     return true;
   }
 
-  placeMark(pos, currentPlayer,callback) {
+  placeMark(pos, currentPlayer, callback) {
     if (!this.isEmpty(pos)) {
       console.log("pos is taken");
     } else {
@@ -43,6 +43,12 @@ class Board {
       return path.every(function(pos) {
         return board.getPos(pos) === currentPlayer.mark;
       });
+
+      //in order to use the below code, we need to import
+      //underscore in this file as well ro run in node.
+      // _.every(path, function(pos) {
+      //   return board.getPos(pos) === currentPlayer.mark;
+      // });
     });
   }
 
