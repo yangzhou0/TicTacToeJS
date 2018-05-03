@@ -11,8 +11,8 @@ class Board {
     return true;
   }
 
-  insert(pos, currentPlayer) {
-    if (isEmpty(pos)) {
+  placeMark(pos, currentPlayer) {
+    if (this.isEmpty(pos)) {
       console.log("pos is taken");
     } else {
       this.getPos(pos) = currentPlayer.mark;
@@ -30,7 +30,6 @@ class Board {
   }
 
   isWon(currentPlayer) {
-    let mark = currentPlayer.mark;
     let horizontals = Board.DIREC.horizontal;
     let verticals = Board.DIREC.vertical;
     let diagonals = Board.DIREC.diagonal;
@@ -39,6 +38,12 @@ class Board {
       verticals,
       diagonals
     );
+    let board = this;
+    return allPossiblePaths.some(function(path) {
+      return path.every(function(pos) {
+        return board.getPos(pos) === currentPlayer.mark;
+      });
+    });
   }
 
   static get DIREC() {
@@ -62,4 +67,4 @@ class Board {
   }
 }
 
-module.exports = Board;
+// module.exports = Board;

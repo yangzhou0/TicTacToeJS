@@ -48,4 +48,22 @@ describe("Board", function() {
       ]);
     });
   });
+
+  
+  describe("isWon method", function() {
+    it("should call getPos", function() {
+      spyOn(board, "getPos");
+      board.isWon({ mark: "b" });
+      expect(board.getPos).toHaveBeenCalled();
+    });
+    it('should return false when no Mark is placed',function(){
+      expect(board.isWon({ mark: "b" })).toBe(false);
+    })
+    it('should return true when three marks are aligned',function(){
+      board.placeMark([0, 0],{ mark: "b" });
+      board.placeMark([1, 1],{ mark: "b" });
+      board.placeMark([2, 2],{ mark: "b" });
+      expect(board.isWon({ mark: "b" })).toBe(true);
+    })
+  });
 });
